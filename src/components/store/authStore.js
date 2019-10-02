@@ -3,8 +3,6 @@ import { AsyncStorage } from "react-native";
 import jwt_decode from "jwt-decode";
 import { instance } from "./instance";
 
-// CHECK IF THERE ARE THINGS THAT ARE REACTNATIVE. REMOVE THEM.
-
 class AuthStore {
   user = null;
 
