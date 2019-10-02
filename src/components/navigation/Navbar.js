@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // Components
-import Login from "./Login";
+import Login from "../Login";
 
 const Navbar = () => {
   return (
