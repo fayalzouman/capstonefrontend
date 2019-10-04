@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Calendar from 'react-widgets/lib/Calendar'
+
 
 class Signup extends Component {
   state = {
@@ -14,6 +16,12 @@ class Signup extends Component {
     event.preventDefault();
     alert("SIGNUP: CONNECT ME!");
   };
+
+  let { Calendar } = ReactWidgets;
+  let formatter = Globalize.dateFormatter({ date: 'medium' })
+  let widget = ( <Calendar headerFormat={formatter} />)
+
+render(widget);
 
   render() {
     const { username, email, password } = this.state;
@@ -35,14 +43,14 @@ class Signup extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="age">Age</label>
                 <input
-                  type="email"
+                  type="age"
                   className="form-control"
-                  id="email"
-                  value={email}
-                  name="email"
-                  placeholder="Email"
+                  id="age"
+                  value={ Calendar }
+                  name="age"
+                  placeholder="Age"
                   onChange={this.handleChange}
                 />
               </div>
