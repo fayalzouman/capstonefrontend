@@ -1,67 +1,59 @@
 import { decorate, observable } from "mobx";
-import { AsyncStorage } from "react-native";
 import jwt_decode from "jwt-decode";
 import { instance } from "./instance";
+import axios from "axios";
 
 class AuthStore {
   user = null;
 
-  setUser = async token => {
+  setUser = token => {
     if (token) {
-      // Save token to localStorage
-      await AsyncStorage.setItem("myToken", token);
-      // Set token to Auth header
-      instance.defaults.headers.common.Authorization = `Bearer ${token}`;
-      // Set current user
-      this.user = jwt_decode(token);
+      localStorage.setItem("myToken", token);
+      axios.defaults.headers.common.Authorization = `jwt ${token}`;
+      const decodedUser = jwt_decode(token);
+      this.user = decodedUser;
     } else {
-      await AsyncStorage.removeItem("myToken");
-      delete instance.defaults.headers.common.Authorization;
+      delete axios.defaults.headers.common.Authorization;
+      localStorage.removeItem("myToken");
       this.user = null;
     }
   };
+
   getProfile = async profile => {};
-  login = async (userData, navigation) => {
+
+  login = async (userData, history) => {
     try {
-      const res = await instance.post("api/login/", userData);
+      const res = axios.post({ instance }, userData);
       const user = res.data;
-      await this.setUser(user.access);
-      navigation.replace("Profile");
+      this.setUser(user.token);
+      history.replace("/");
     } catch (err) {
-      console.error(err);
+      console.error(err.response.data);
     }
   };
 
-  signup = async (userData, navigation) => {
+  signup = async (userData, history) => {
     try {
-      await instance.post("api/register/", userData);
-      this.login(userData, navigation);
-      //navigation.replace("Profile");
+      const res = await axios.post({ instance }, userData);
+      const user = res.data;
+      //this.user = jwt_decode(user.token);
+      this.setUser(user.token);
+      this.props.history.replace("/");
+      console.log("[sign up from appstore] done");
     } catch (err) {
       console.error(err);
-      //alert(err);
     }
   };
 
-  logout = async navigation => {
-    await this.setUser();
-    navigation.replace("Login");
-  };
-
-  checkForToken = async () => {
-    const token = await AsyncStorage.getItem("myToken");
-
+  checkForToken = () => {
+    const token = localStorage.getItem("myToken");
     if (token) {
       const currentTime = Date.now() / 1000;
-      // Decode token and get user info
       const user = jwt_decode(token);
-
-      // Check token expiration
       if (user.exp >= currentTime) {
-        // Set auth token header
-        await this.setUser(token);
+        this.setUser(token);
       } else {
-        this.setUser();
+        this.logout();
       }
     }
   };

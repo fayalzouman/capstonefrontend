@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import Calendar from 'react-widgets/lib/Calendar'
-
+// import {Calendar} from 'react-widgets/lib/Calendar'
 
 class Signup extends Component {
   state = {
     username: "",
-    email: "",
     password: ""
   };
 
@@ -17,14 +15,12 @@ class Signup extends Component {
     alert("SIGNUP: CONNECT ME!");
   };
 
-  let { Calendar } = ReactWidgets;
-  let formatter = Globalize.dateFormatter({ date: 'medium' })
-  let widget = ( <Calendar headerFormat={formatter} />)
+  // const calendar  = ReactWidgets;
+  // let formatter = Globalize.dateFormatter({ date: 'medium' })
+  // let widget = ( <Calendar headerFormat={formatter} />)
 
-render(widget);
-
-  render() {
-    const { username, email, password } = this.state;
+  render(widget) {
+    const { username, password } = this.state;
     return (
       <div className="col-6 mx-auto">
         <div className="card my-5">
@@ -48,7 +44,7 @@ render(widget);
                   type="age"
                   className="form-control"
                   id="age"
-                  value={ Calendar }
+                  // value={Calendar}
                   name="age"
                   placeholder="Age"
                   onChange={this.handleChange}
