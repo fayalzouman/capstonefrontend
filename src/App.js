@@ -38,7 +38,7 @@ function App() {
         <Route path="/highschoollist/" component={HighSchoolList} />
         {/* <Route path="/books/:bookColor?" component={BookList} /> */}
         <Route path="/signup/" component={Signup} />
-        <Route path="/profile/:profileID" component={AuthorDetail} />
+        {/* <Route path="/profile/:profileID" component={Profile} /> */}
       </Switch>
     </BrowserRouter>
   );
