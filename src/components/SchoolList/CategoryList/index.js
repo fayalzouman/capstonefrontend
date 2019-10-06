@@ -1,20 +1,19 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import authStore from "../../store/authStore";
+// import authStore from "../../store/authStore";
 import { Card } from "react-bootstrap";
-// import { category } from "./data";
 import { observer } from "mobx-react";
 
-class ElementaryList extends Component {
+// Style
+//import styles from "./styles";
+
+class HighSchoolList extends Component {
   handleClick = () => {
     alert(`Hello`);
   };
   render() {
-    if (!authStore.user) return <Redirect to="/login" />;
+    // if (!authStore.user) return <Redirect to="/login" />;
     return (
-      // <Card button onClick={this.handleClick}>
-      //   <Card.Body>{category.name}</Card.Body>
-      // </Card>
       <Card
         style={{
           width: "18rem"
@@ -35,5 +34,4 @@ class ElementaryList extends Component {
     );
   }
 }
-
-export default observer(ElementaryList);
+export default observer(HighSchoolList);

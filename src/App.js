@@ -20,15 +20,17 @@ import Signup from "./components/Signup";
 // Store
 // import authStore from "./components/store/authStore";
 
-function App() {
+class App extends Component {
   // const getView = () => {
   // if (authorStore.loading {/*|| bookStore.loading*/}) {
 
   // if (authStore.loading) {
   //   return <Loading />;
   // } else {
+  
+  render() {
   return (
-    <BrowserRouter>
+  
       <Switch>
         <Redirect exact from="/" to="/schoollist" />
         <Route path="/login/" component={Login} />
@@ -40,7 +42,6 @@ function App() {
         <Route path="/signup/" component={Signup} />
         {/* <Route path="/profile/:profileID" component={Profile} /> */}
       </Switch>
-    </BrowserRouter>
   );
 }
 
