@@ -1,37 +1,19 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-// import authStore from "../../store/authStore";
-import { Card } from "react-bootstrap";
+import React from "react";
 import { observer } from "mobx-react";
-
-// Style
-//import styles from "./styles";
-
-class HighSchoolList extends Component {
-  handleClick = () => {
-    alert(`Hello`);
-  };
-  render() {
-    // if (!authStore.user) return <Redirect to="/login" />;
-    return (
-      <Card
-        style={{
-          width: "18rem"
-        }}
-        button
-        onClick={this.handleClick}
-      >
-        <Card.Img variant="top" src="holder.js/100px180" />
-        <Card.Body>
-          <Card.Title> Hi </Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card 's content.{" "}
-          </Card.Text>{" "}
-          {/* <Button variant="primary">Go somewhere</Button> */}{" "}
-        </Card.Body>{" "}
-      </Card>
-    );
-  }
-}
-export default observer(HighSchoolList);
+// Components
+import CategoryCard from "./CategoryCard";
+// Store
+import categoriesStore from "../../store/categoriesStore";
+const CategoryList = () => {
+  const categoryCards = categoriesStore.fetchCategories.map(category => (
+    <CategoryCard key={category.id} category={category} />
+  ));
+  return (
+    <div>
+      <h3>Categories</h3>
+      {/* <SearchBar store={authorStore} /> */}
+      <div className="row">{categoryCards}</div>
+    </div>
+  );
+};
+export default observer(CategoryList);
