@@ -1,10 +1,15 @@
 import { decorate, observable, computed } from "mobx";
 import axios from "axios";
 import React from "react";
+const instance = axios.create({
+  baseURL: "http://127.0.0.1:8000/"
+});
+
 
 const instance = axios.create({
   baseURL: "http://127.0.0.1:8000/"
 });
+
 
 class CategoriesStore {
   categories = [];
@@ -53,5 +58,10 @@ decorate(CategoriesStore, {
 
 const categoriesStore = new CategoriesStore();
 // categoriesStore.fetchCategories();
+
+
+const categoriesStore = new CategoriesStore();
+// categoriesStore.fetchCategories();
+
 
 export default categoriesStore;
