@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 function SubjectCard(props) {
   const subject = props.subject;
   return (
@@ -13,4 +14,5 @@ function SubjectCard(props) {
     </div>
   );
 }
+
 export default SubjectCard;

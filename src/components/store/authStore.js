@@ -23,7 +23,7 @@ class AuthStore {
 
   login = async (userData, history) => {
     try {
-      const res = axios.post({ instance }, userData);
+      const res = await instance.post("login/", userData);
       const user = res.data;
       this.setUser(user.token);
       history.replace("/");
@@ -34,7 +34,8 @@ class AuthStore {
 
   signup = async (userData, history) => {
     try {
-      const res = await axios.post({ instance }, userData);
+      const res = await instance.post("register/", userData);
+      // const res = await axios.post({ instance }, userData);
       const user = res.data;
       //this.user = jwt_decode(user.token);
       this.setUser(user.token);

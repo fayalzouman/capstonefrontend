@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 function SchoolCard(props) {
   const school = props.school;
   return (
@@ -13,4 +14,5 @@ function SchoolCard(props) {
     </div>
   );
 }
+
 export default SchoolCard;

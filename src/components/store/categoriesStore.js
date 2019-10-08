@@ -4,11 +4,19 @@ import React from "react";
 const instance = axios.create({
   baseURL: "http://127.0.0.1:8000/"
 });
+
+
+const instance = axios.create({
+  baseURL: "http://127.0.0.1:8000/"
+});
+
+
 class CategoriesStore {
   categories = [];
   subjects = [];
   schools = [];
   loading = true;
+
   fetchCategories = async () => {
     try {
       const res = await instance.get("schools/categories/");
@@ -29,6 +37,7 @@ class CategoriesStore {
       console.error(error);
     }
   };
+
   fetchSubjects = async () => {
     try {
       const res = await instance.get("schools/categories/subjects/");
@@ -46,6 +55,13 @@ decorate(CategoriesStore, {
   subjects: observable,
   schools: observable
 });
+
 const categoriesStore = new CategoriesStore();
 // categoriesStore.fetchCategories();
+
+
+const categoriesStore = new CategoriesStore();
+// categoriesStore.fetchCategories();
+
+
 export default categoriesStore;
